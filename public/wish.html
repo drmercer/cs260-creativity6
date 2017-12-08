@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,6 +115,12 @@
       </div>
     </div>
   </header>
+
+<form ng-submit="addItem()" ng-if="user">
+  Item: <input type="text" ng-model="formName"></input></br>
+  URL to Item: <input type="text" ng-model="formPicture"></input>
+    <button type="submit">Add Item to Wish List</button>
+</form>
 
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
