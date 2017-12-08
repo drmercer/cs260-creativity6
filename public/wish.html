@@ -45,10 +45,13 @@
   <header class="mdl-layout__header mdl-color-text--white mdl-color--red-600">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-        <h3>Wish List Creator</h3>
+        <img src="images/Santa-clipart.png" height="50px"/>
+	<h3>Wish List Creator</h3>
+        <img src="images/Santa-clipart2.png" height="50px"/>
       </div>
     </div>
   </header>
+
 
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
@@ -65,7 +68,12 @@
           <!-- Container where we'll display the user details -->
           <div class="quickstart-user-details-container">
             Firebase sign-in status: <span id="quickstart-sign-in-status">{{signInStatus}}</span>
-            <p>{{test}}</p>
+
+		<form ng-submit="addItem()" ng-if="user">
+  		Item:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&thinsp;&thinsp; <input type="text" ng-model="formName"></input></br>
+ 		URL to Item: <input type="text" ng-model="formPicture"></input>
+    		<button type="submit">Add Item to Wish List</button>
+		</form>
           </div>
         </div>
       </div>
