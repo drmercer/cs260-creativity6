@@ -12,6 +12,9 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 		$scope.wishlist.$add(newItem);
 		$scope.formName = '';
 		$scope.formURL = '';
+		document.querySelectorAll(".mdl-textfield").forEach(function(el) {
+			el.MaterialTextfield.change();
+		});
 	}
 	initFirebase($scope, setupWishlist);
 
