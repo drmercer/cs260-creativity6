@@ -67,7 +67,7 @@
           <button ng-disabled="signingIn" ng-click="toggleSignIn()" class="mdl-button mdl-js-button mdl-button--raised">Sign in/out with GitHub</button>
 
           Firebase sign-in status: <span id="quickstart-sign-in-status">{{signInStatus}}</span>
-          <hr/>
+          <hr ng-if="user"/>
 
           <!-- Container where we'll display the user details -->
           <div class="quickstart-user-details-container">
@@ -87,11 +87,11 @@
 		<h1 ng-if="user">Current Wish List</h1>
 		<div ng-if="user" ng-repeat="item in wishlist | orderBy:['name']">
 		<span class="glyphicon glyphicon-remove" ng-click="delete(item)"></span>
-  		{{item.name}} - URL: <a target="_blank" ng-href="{{item.URL}}">Link</a>
+  		{{item.name}}<span ng-if="item.URL">(<a target="_blank" ng-href="{{item.URL}}">Link</a>)</span>
 		</div>
           </div>
 
-          <hr/>
+          <hr ng-if="user"/>
           <a ng-if="user" ng-href="view/{{user.uid}}">View your wishlist. (Share this link with anyone!)</a>
         </div>
       </div>

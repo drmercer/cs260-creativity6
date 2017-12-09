@@ -8,8 +8,7 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 	$scope.authObj = $firebaseAuth();
 	$scope.addItem = function() {
 		var newItem = {name:$scope.formName,URL:$scope.formURL};
-		console.log($scope);
-		console.log(newItem);
+		if (!newItem.name) return;
 		$scope.wishlist.$add(newItem);
 		$scope.formName = '';
 		$scope.formURL = '';
@@ -37,7 +36,7 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 
 function initFirebase($scope, callback) {
 
-	$scope.signInStatus = "";
+	$scope.signInStatus = "Please wait...";
 	$scope.signingIn = false;
 	$scope.user = null;
 
@@ -55,7 +54,6 @@ function initFirebase($scope, callback) {
 
 	// Listening for auth state changes.
 	$scope.authObj.$onAuthStateChanged(function(user) {
-		console.log("auth state changed:", user);
 		$scope.signInStatus = user ? "Signed in!" : "Not signed in";
 		$scope.user = user || null;
 		$scope.signingIn = false;

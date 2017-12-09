@@ -7,6 +7,10 @@ a {
   color: #b71c1c;
 }
 
+a:hover, a:active, a:focus {
+  color: darkred;
+}
+
 .mdl-textfield.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
     color: green;
 }
