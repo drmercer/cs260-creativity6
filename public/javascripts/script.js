@@ -25,6 +25,11 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 		var ref = firebase.database().ref('/wishlists/' + $scope.authObj.$getAuth().uid);
 		$scope.wishlist = $firebaseArray(ref);
 	}
+
+	$scope.delete = function(item) {
+		$scope.wishlist.$remove(item);
+	}
+
 }
 
 //======================================================================
