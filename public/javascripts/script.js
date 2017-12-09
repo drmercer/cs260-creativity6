@@ -17,7 +17,7 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 	initFirebase($scope, setupWishlist);
 
 	function setupWishlist() {
-		if (!$scope.user) {
+		if (!$scope.authObj.$getAuth()) {
 			$scope.wishlist = null;
 			return;
 		}
