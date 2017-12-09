@@ -80,9 +80,11 @@
 		<h1 ng-if="user">Current Wish List</h1>
 		<div ng-if="user" ng-repeat="item in wishlist | orderBy:['name']">
 		<span class="glyphicon glyphicon-remove" ng-click="delete(item)"></span>
-  		{{item.name}} - URL: <a target="_blank" ng-href="{{item.URL}}">Link</a> 
+  		{{item.name}} - URL: <a target="_blank" ng-href="{{item.URL}}">Link</a>
 		</div>
           </div>
+
+          <a ng-href="view/{{user.uid}}">View your wishlist. (Share this link with anyone!)</a>
         </div>
       </div>
     </div>
