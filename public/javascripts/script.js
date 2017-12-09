@@ -24,7 +24,6 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 		console.log($scope.authObj);
 		var ref = firebase.database().ref('/wishlists/' + $scope.authObj.$getAuth().uid);
 		$scope.wishlist = $firebaseArray(ref);
-		$scope.wishlist.$add({ name: 'A bar', URL:"https://google.com/search/q?=foo" });
 	}
 }
 
