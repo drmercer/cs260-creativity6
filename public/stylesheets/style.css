@@ -2,3 +2,25 @@ h3 {
   color: white;
   text-decoration: underline dotted green;
 }
+
+a {
+  color: #b71c1c;
+}
+
+.mdl-textfield.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+    color: green;
+}
+
+.mdl-textfield__label:after{
+    background-color: green;
+}
+
+button[type="submit"] {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: lightgreen;
+}

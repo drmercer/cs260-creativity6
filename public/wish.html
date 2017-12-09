@@ -66,15 +66,22 @@
           <!-- Button that handles sign-in/sign-out -->
           <button ng-disabled="signingIn" ng-click="toggleSignIn()" class="mdl-button mdl-js-button mdl-button--raised">Sign in/out with GitHub</button>
 
+          Firebase sign-in status: <span id="quickstart-sign-in-status">{{signInStatus}}</span>
+          <hr/>
+
           <!-- Container where we'll display the user details -->
           <div class="quickstart-user-details-container">
-            Firebase sign-in status: <span id="quickstart-sign-in-status">{{signInStatus}}</span>
 
 		<form ng-submit="addItem()" ng-show="user">
-  		Item:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&thinsp;&thinsp;
-		<input type="text" ng-model="formName"></input></br>
-		URL to Item: <input type="text" ng-model="formURL"></input>
-    		<button type="submit">Add Item to Wish List</button>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" ng-model="formName">
+                <label class="mdl-textfield__label" for="sample1">Item Description</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" title="Don't forget http://">
+                <input class="mdl-textfield__input" type="url" ng-model="formURL">
+                <label class="mdl-textfield__label" for="sample1">URL</label>
+            </div>
+    		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Add Item to Wish List</button>
 		</form>
 
 		<h1 ng-if="user">Current Wish List</h1>
@@ -84,7 +91,8 @@
 		</div>
           </div>
 
-          <a ng-href="view/{{user.uid}}">View your wishlist. (Share this link with anyone!)</a>
+          <hr/>
+          <a ng-if="user" ng-href="view/{{user.uid}}">View your wishlist. (Share this link with anyone!)</a>
         </div>
       </div>
     </div>
