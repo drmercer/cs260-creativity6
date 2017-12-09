@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santa's Coming</title>
 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Theming -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -69,11 +70,18 @@
           <div class="quickstart-user-details-container">
             Firebase sign-in status: <span id="quickstart-sign-in-status">{{signInStatus}}</span>
 
-		<form ng-submit="addItem()" ng-if="user">
-  		Item:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&thinsp;&thinsp; <input type="text" ng-model="formName"></input></br>
- 		URL to Item: <input type="text" ng-model="formPicture"></input>
+		<form ng-submit="addItem()" ng-show="user">
+  		Item:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&thinsp;&thinsp;
+		<input type="text" ng-model="formName"></input></br>
+		URL to Item: <input type="text" ng-model="formURL"></input>
     		<button type="submit">Add Item to Wish List</button>
 		</form>
+
+		<h1 ng-if="user">Current Wish List</h1>
+		<div ng-if="user" ng-repeat="item in wishlist | orderBy:['name']">
+		<span class="glyphicon glyphicon-remove" ng-click="delete(item)"></span>
+  		{{item.name}} - URL: <a target="_blank" ng-href="{{item.URL}}">Link</a> 
+		</div>
           </div>
         </div>
       </div>

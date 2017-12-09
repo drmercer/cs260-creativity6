@@ -7,6 +7,18 @@ function myCtrl($scope, $firebaseAuth) {
 
 	$scope.authObj = $firebaseAuth();
 	initFirebase($scope);
+
+    $scope.wishlist = [];
+
+    $scope.addItem = function() {
+      var newItem = {name:$scope.formName,URL:$scope.formURL};
+	console.log($scope);
+	console.log(newItem);
+      //$scope.create(newObj);
+      $scope.wishlist.push(newItem);
+      $scope.formName = '';
+      $scope.formURL = '';
+    }
 }
 
 //======================================================================
