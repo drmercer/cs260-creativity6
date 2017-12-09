@@ -10,8 +10,7 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 		var newItem = {name:$scope.formName,URL:$scope.formURL};
 		console.log($scope);
 		console.log(newItem);
-		//$scope.create(newObj);
-		$scope.wishlist.push(newItem);
+		$scope.wishlist.$add(newItem);
 		$scope.formName = '';
 		$scope.formURL = '';
 	}
@@ -24,8 +23,8 @@ function myCtrl($scope, $firebaseAuth, $firebaseArray) {
 		}
 		console.log($scope.authObj);
 		var ref = firebase.database().ref('/wishlists/' + $scope.authObj.$getAuth().uid);
-		$scope.$wishlist = $firebaseArray(ref);
-		$scope.$wishlist.$add({ foo: 'bar' });
+		$scope.wishlist = $firebaseArray(ref);
+		$scope.wishlist.$add({ name: 'A bar', URL:"https://google.com/search/q?=foo" });
 	}
 }
 
