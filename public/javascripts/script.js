@@ -2,29 +2,37 @@ angular
 .module('myApp', ["firebase"])
 .controller('myCtrl', myCtrl);
 
-function myCtrl($scope, $firebaseAuth) {
-	$scope.test = "Hello World!";
+function myCtrl($scope, $firebaseAuth, $firebaseArray) {
+
 
 	$scope.authObj = $firebaseAuth();
-	initFirebase($scope);
+	$scope.addItem = function() {
+		var newItem = {name:$scope.formName,URL:$scope.formURL};
+		console.log($scope);
+		console.log(newItem);
+		//$scope.create(newObj);
+		$scope.wishlist.push(newItem);
+		$scope.formName = '';
+		$scope.formURL = '';
+	}
+	initFirebase($scope, setupWishlist);
 
-    $scope.wishlist = [];
-
-    $scope.addItem = function() {
-      var newItem = {name:$scope.formName,URL:$scope.formURL};
-	console.log($scope);
-	console.log(newItem);
-      //$scope.create(newObj);
-      $scope.wishlist.push(newItem);
-      $scope.formName = '';
-      $scope.formURL = '';
-    }
+	function setupWishlist() {
+		if (!$scope.user) {
+			$scope.wishlist = null;
+			return;
+		}
+		console.log($scope.authObj);
+		var ref = firebase.database().ref('/wishlists/' + $scope.authObj.$getAuth().uid);
+		$scope.$wishlist = $firebaseArray(ref);
+		$scope.$wishlist.$add({ foo: 'bar' });
+	}
 }
 
 //======================================================================
 //			Firebase setup
 
-function initFirebase($scope) {
+function initFirebase($scope, callback) {
 
 	$scope.signInStatus = "";
 	$scope.signingIn = false;
@@ -38,7 +46,7 @@ function initFirebase($scope) {
 			$scope.authObj.$signInWithRedirect(provider);
 		} else {
 			console.log("Signing out");
-			$scope.authObj.$signOut();
+			$scope.authObj.$signOut().then(callback);
 		}
 	};
 
@@ -48,5 +56,6 @@ function initFirebase($scope) {
 		$scope.signInStatus = user ? "Signed in!" : "Not signed in";
 		$scope.user = user || null;
 		$scope.signingIn = false;
+		callback();
 	});
 }
